@@ -48,11 +48,15 @@ namespace CustomListClass
             
         }
 
-
-
         public void Remove(T item)
         {
+            _count--;
+            for(int i = 0; i < items.Length; i++)
+            {
 
+                T[] newItems = new T[capacity];
+            }
+         
         }
 
         public void Resize()

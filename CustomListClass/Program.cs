@@ -10,13 +10,13 @@ namespace CustomListClass
     {
         static void Main(string[] args)
         {
-            CustomList<string> Weekdays = new CustomList<string>();
+            List<string> Weekdays = new List<string>();
             Weekdays.Add("Monday");
             Weekdays.Add("Tuesday");
             Weekdays.Add("Wednesday");
             Weekdays.Add("Thursday");
             Weekdays.Add("Friday");
+
         }
-            
     }
 }
