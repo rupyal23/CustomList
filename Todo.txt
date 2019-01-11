@@ -1,0 +1,31 @@
+Project Due >>>>Wednesday<<<
+
+Refer to C# List<T> Class Documentation.
+
+>Use TDD
+>Custom Built List Class
+	Stores values in an array -- by add method
+	be able to store any data type --- by being Generic <T> /no constraints
+>Read Only Count Property  ---- (Only get, no set)
+	be able to count number of elements in the list. -- make Count method
+>Create C# indexer from scratch []
+	be able to access objects via this indexer
+	ensure user cannot access out of range(maybe use out of range exception)
+>Add Method
+	be able to add object to the list
+	Make tests
+>Remove Method
+	be able to remove the object
+	Make tests
+>Override the ToString method
+	be able to convert contents into string
+	Make tests
+>Overload the + operator
+	Add
+	Subtract
+>Zip Method
+
+>Use SOLID
+>Good Naming Conventions
+
+
