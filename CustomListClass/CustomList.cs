@@ -50,13 +50,22 @@ namespace CustomListClass
 
         public void Remove(T item)
         {
-            _count--;
-            for(int i = 0; i < items.Length; i++)
+            
+            for (int i = 0; i < items.Length; i++)
             {
-
-                T[] newItems = new T[capacity];
+                if (item.Equals(items[i]))
+                {
+                    items[i] = default(T);
+                    _count--;
+                    for (int j = i; j < _count; j++)
+                    {
+                        items[j] = items[j + 1];
+                        
+                    }
+                    items[_count] = default(T); 
+                    break; //used so that it only removes one instance and break out of the loop
+                }
             }
-         
         }
 
         public void Resize()

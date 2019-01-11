@@ -236,11 +236,11 @@ namespace CustomListClassTest
 
         //Testing remove method for removing multiple instances
         [TestMethod]
-        public void Remove_MultipleInstances_True()
+        public void Remove_MultipleInstances_False()
         {
             //Arrange
             CustomList<int> numbers = new CustomList<int>();
-            int expectedResult = 4;
+            
             //Act
             numbers.Add(1);
             numbers.Add(2);
@@ -252,7 +252,7 @@ namespace CustomListClassTest
             numbers.Remove(2);
             //Assert
 
-            Assert.AreEqual(4, numbers.count);
+            Assert.AreEqual(6, numbers.count);
         }
 
 
@@ -266,14 +266,16 @@ namespace CustomListClassTest
             //Act
             primes.Add(1);
             primes.Add(3);
+            primes.Add(6);
             primes.Add(5);
             primes.Add(7);
-            primes.Add(8);
             primes.Add(9);
-            primes.Remove(primes[4]);
+            primes.Add(11);
+            primes.Add(13);
+            primes.Remove(primes[2]);
             //Assert
 
-            Assert.AreEqual(9, primes[4]);
+            Assert.AreEqual(5, primes[2]);
         }
 
         //Testing to check if remove method does nothing
@@ -292,6 +294,7 @@ namespace CustomListClassTest
             weekdays.Remove("sunday");
             //Assert
             Assert.IsTrue(weekdays.count == 5);
+            
         }
     }
 }
