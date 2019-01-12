@@ -42,12 +42,21 @@ namespace CustomListClass
             items[_count-1] = item;
         }
         
-        //want to overload by adding the index functionality
-        public void Add(T item, T item1)
+        //Overloaded by adding the index functionality. Add a value at the specified index and shifts list to the right.
+        public void Add(T item, int item1)
         {
+            _count++;
+            Resize();
             
+            for(int i = _count; i > item1 ; i--)
+            {
+                items[i] = items[i - 1];
+
+            }
+            items[item1] = item;
         }
 
+        //Remove Method- Removes the first instance of the item in the list
         public void Remove(T item)
         {
             
@@ -68,6 +77,7 @@ namespace CustomListClass
             }
         }
 
+        //Helper method to resize the array in the list
         public void Resize()
         {
             if(_count == capacity)

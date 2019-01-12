@@ -126,14 +126,16 @@ namespace CustomListClassTest
         {
             //Arrange
             CustomList<int> myList = new CustomList<int>();
-            int expectedResult = 7;
-            int actualResult = myList[2];
+            int expectedResult = 3;
             //Act
-            myList.Add(3);
+            myList.Add(1);
             myList.Add(5);
-            myList.Add(expectedResult, 2);
+            myList.Add(7);
+            myList.Add(9);
+            myList.Add(11);
+            myList.Add(3, 1);
             //Assert
-            Assert.AreEqual(expectedResult, actualResult);
+            Assert.AreEqual(expectedResult, myList[1]);
 
         }
 
