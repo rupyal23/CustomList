@@ -118,7 +118,24 @@ namespace CustomListClassTest
             Assert.AreEqual(expectedResult, primeNos[3]);
         }
         
-        
+        //Test for Indexer/throws out of bound exception-User Strory
+        [TestMethod]
+        [ExpectedException(typeof(IndexOutOfRangeException))]
+        public void Indexer_OutOfBound_ThrowException()
+        {
+            //Arrange
+            CustomList<int> numbers = new CustomList<int>(5);
+
+
+            //Act
+            numbers.Add(1);
+            numbers.Add(2);
+            numbers.Add(3);
+            numbers.Add(4);
+            int expectedResult = numbers[6];
+                       
+            //Assert
+        }
         
         //Dont know if i would be able to do that
         [TestMethod]

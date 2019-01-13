@@ -18,6 +18,13 @@ namespace CustomListClass
         {
             items = new T[_defCapacity];
         }
+
+        //another constructor to declare list with the capacity
+        public CustomList(int item)
+        {
+            _defCapacity = item;
+            items = new T[_defCapacity];
+        }
         
 
         //Indexer for the custom list
