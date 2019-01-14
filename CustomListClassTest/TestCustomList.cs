@@ -356,7 +356,7 @@ namespace CustomListClassTest
             List2.Add(9);
             List2.Add(11);
 
-           // Result = List1 + List2;
+            Result = List1 + List2;
 
             //Assert
             Assert.AreEqual(11, Result[5]);
@@ -384,7 +384,7 @@ namespace CustomListClassTest
             List2.Add(19);
             List2.Add(23);
 
-           // Result = List1 + List2;
+            Result = List1 + List2;
 
             //Assert
             Assert.AreEqual(11, Result[5]);
@@ -408,42 +408,38 @@ namespace CustomListClassTest
             weekdays2.Add("Thursday");
             weekdays2.Add("Friday");
 
-           // weekdays = weekdays1 + weekdays2;
+            weekdays = weekdays1 + weekdays2;
 
             //Assert
             Assert.AreNotEqual("Thursday", weekdays[0]);
 
         }
 
-        [TestMethod]
-       // [ExpectedException(typeof(exception))]
-        public void PlusOverload_DifferentType_Fail()
-        {
-
-            //Arrange
-            CustomList<string> weekdays = new CustomList<string>();
-            CustomList<int> numbers = new CustomList<int>();
-
-            //Act
-
-
-
-            //Assert
-
-        }
+        
         [TestMethod]
         public void PlusOverload_ResizeResultList_True()
         {
 
             //Arrange
+            CustomList<string> weekdays1 = new CustomList<string>();
+            CustomList<string> weekdays2 = new CustomList<string>();
 
+            CustomList<string> weekdays = new CustomList<string>();
 
 
             //Act
+            weekdays1.Add("Monday");
+            weekdays1.Add("Tuesday");
+            weekdays1.Add("Wednesday");
 
+            weekdays2.Add("Thursday");
+            weekdays2.Add("Friday");
 
+            weekdays = weekdays1 + weekdays2;
 
             //Assert
+            Assert.AreEqual(8, weekdays.capacity);
+
 
         }
         [TestMethod]
@@ -451,15 +447,28 @@ namespace CustomListClassTest
         {
 
             //Arrange
+            CustomList<int> numbers1 = new CustomList<int>();
+            CustomList<int> numbers2 = new CustomList<int>();
 
-
-
+            CustomList<int> resultNumbers = new CustomList<int>();
             //Act
 
+            numbers1.Add(1);
+            numbers1.Add(2);
+            numbers1.Add(3);
+            numbers1.Add(4);
+            numbers1.Add(5);
 
+            numbers2.Add(1);
+            numbers2.Add(2);
+            numbers2.Add(3);
+            numbers2.Add(4);
+            numbers2.Add(5);
+
+            resultNumbers = numbers1 + numbers2;
 
             //Assert
-
+            Assert.AreEqual(10, resultNumbers.count);
         }
     }
 

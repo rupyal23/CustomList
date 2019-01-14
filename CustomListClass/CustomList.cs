@@ -49,12 +49,6 @@ namespace CustomListClass
             items[_count-1] = item;
         }
 
-        public void AddForConversion(T item)
-        {
-            _count++;
-            items[_count - 1] = item;
-        }
-
         //Overloaded by adding the index functionality. Add a value at the specified index and shifts list to the right.
         public void Add(T item, int item1)
         {
@@ -115,6 +109,20 @@ namespace CustomListClass
             }
             return stringifiedList;
 
+        }
+
+        public static CustomList<T> operator +(CustomList<T>List1, CustomList<T>List2)
+        {
+            CustomList<T> ResultList = new CustomList<T>();
+            for(int i = 0; i < List1.count; i++)
+            {
+                ResultList.Add(List1[i]);
+            }
+            for(int j = 0; j < List2.count; j++)
+            {
+                ResultList.Add(List2[j]);
+            }
+            return ResultList;
         }
     }
 }
