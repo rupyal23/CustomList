@@ -110,10 +110,10 @@ namespace CustomListClassTest
             primeNos.Add(3);
             primeNos.Add(5);
             primeNos.Add(7);
-            primeNos.Add(9);
             primeNos.Add(11);
             primeNos.Add(13);
-            int expectedResult = 9;
+            primeNos.Add(17);
+            int expectedResult = 11;
             //Assert
             Assert.AreEqual(expectedResult, primeNos[3]);
         }
@@ -469,6 +469,158 @@ namespace CustomListClassTest
 
             //Assert
             Assert.AreEqual(10, resultNumbers.count);
+        }
+
+
+        //Test Method to check subtraction goes through
+        [TestMethod]
+        public void SubtractOverload_Subtraction_Pass()
+        {
+            //Arrange
+            CustomList<int> numbers1 = new CustomList<int>();
+            CustomList<int> numbers2 = new CustomList<int>();
+
+            CustomList<int> odds = new CustomList<int>();
+
+            //Act
+            numbers1.Add(1);
+            numbers1.Add(2);
+            numbers1.Add(3);
+            numbers1.Add(4);
+            numbers1.Add(5);
+            numbers1.Add(6);
+            numbers1.Add(7);
+
+            numbers2.Add(2);
+            numbers2.Add(4);
+            numbers2.Add(6);
+
+            odds = numbers1 - numbers2;
+
+            //Assert
+            Assert.AreEqual(7, odds[3]);
+
+        }
+
+        //To check that array must desize
+        [TestMethod]
+        public void SubtractOverload_DesizeArray_True()
+        {
+            //Arrange
+            CustomList<int> numbers1 = new CustomList<int>();
+            CustomList<int> numbers2 = new CustomList<int>();
+
+            CustomList<int> odds = new CustomList<int>();
+            //Act
+            numbers1.Add(1);
+            numbers1.Add(2);
+            numbers1.Add(3);
+            numbers1.Add(4);
+            numbers1.Add(5);
+            numbers1.Add(6);
+            numbers1.Add(7);
+
+            numbers2.Add(4);
+            numbers2.Add(5);
+            numbers2.Add(6);
+            numbers2.Add(7);
+
+            odds = numbers1 - numbers2;
+
+            //Assert
+            Assert.AreEqual(4, odds.capacity);
+
+        }
+
+
+        //To check only one gets subtracted if multiple same values found
+        [TestMethod]
+        public void SubtractOverload_OnlyOne_True()
+        {
+            //Arrange
+            CustomList<string> weekdays1 = new CustomList<string>();
+            CustomList<string> weekdays2 = new CustomList<string>();
+
+            CustomList<string> weekdays = new CustomList<string>();
+            //Act
+            weekdays1.Add("Monday");
+            weekdays1.Add("Tuesday");
+            weekdays1.Add("Tuesday");
+            weekdays1.Add("Wednesday");
+            weekdays1.Add("Thursday");
+            weekdays1.Add("Friday");
+
+            weekdays2.Add("Thursday");
+            weekdays2.Add("Tuesday");
+            weekdays2.Add("Friday");
+
+            weekdays = weekdays1 - weekdays2;
+            //Assert
+            Assert.AreEqual("Tuesday", weekdays[1]);
+        }
+
+        //To check if first instance is deleted not second
+        [TestMethod]
+        public void SubtractOverload_OnlyFirstDelete_True()
+        {
+            //Arrange
+            CustomList<int> numbers1 = new CustomList<int>();
+            CustomList<int> numbers2 = new CustomList<int>();
+
+            CustomList<int> numbers = new CustomList<int>();
+
+            //Act
+            numbers1.Add(10);
+            numbers1.Add(20);
+            numbers1.Add(50);
+            numbers1.Add(30);
+            numbers1.Add(40);
+            numbers1.Add(50);
+            numbers1.Add(60);
+
+            numbers2.Add(87);
+            numbers2.Add(56);
+            numbers2.Add(50);
+            numbers2.Add(58);
+
+            numbers = numbers1 - numbers2;
+
+            //Assert
+            Assert.AreEqual(50, numbers[4]);
+
+        }
+
+
+
+        //Check if it can hold values again and resize again after subtraction
+        [TestMethod]
+        public void SubtractOverload_DoAddOnResult_shouldWork()
+        {
+            //Arrange
+            CustomList<int> primes1 = new CustomList<int>();
+            CustomList<int> primes2 = new CustomList<int>();
+
+            CustomList<int> primes = new CustomList<int>();
+            //Act
+
+            primes1.Add(2);
+            primes1.Add(3);
+            primes1.Add(5);
+            primes1.Add(7);
+            primes1.Add(9);
+
+            primes2.Add(9);
+            primes1.Add(7);
+            primes2.Add(11);
+            primes2.Add(13);
+            primes2.Add(17);
+
+            primes = primes1 - primes2;
+            primes.Add(7, 3);
+
+            //Assert
+            Assert.AreEqual(7, primes[3]);
+
         }
     }
 

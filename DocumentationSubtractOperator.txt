@@ -1,0 +1,24 @@
+SYNTAX
+	access-modifier type operator -(type List1, type List2) 
+
+EXPLANATION  
+	>access-modifier is Public
+	>type is the List type that will get returned
+	The - operator is overloaded with the list functionality. 
+	Returns List3 which is List1 - List2. It subtracts the all of the second list objects found in the first 		list and returns the subtracted list.
+
+PARAMETERS - type List1 and type List2
+	>These are the two List types which should be of same type
+	>List1 is the list that is being subtracted from
+	>List2 is the list that is to be subtracted
+
+RETURN TYPE
+	It will return the subtracted list of the same type as of the lists in the expression.
+
+
+EXAMPLE
+	List1 = {2, 3, 4, 5, 6, 7, 9, 11, 13, 17, 19, 20, 23}
+	List2 = {4, 6, 9, 20}
+	ListOfPrimes = List1 - List2;
+	ListOfPrimes = {2, 3, 5, 7, 11, 13, 17, 19, 23} with Count of 9.
+	
