@@ -48,7 +48,13 @@ namespace CustomListClass
             Resize();
             items[_count-1] = item;
         }
-        
+
+        public void AddForConversion(T item)
+        {
+            _count++;
+            items[_count - 1] = item;
+        }
+
         //Overloaded by adding the index functionality. Add a value at the specified index and shifts list to the right.
         public void Add(T item, int item1)
         {
@@ -97,6 +103,18 @@ namespace CustomListClass
                 }
                 items = temporaryItems;
             }
+        }
+
+        public override string ToString()
+        {
+            
+            string stringifiedList = "";
+            for(int i = 0; i < _count; i++)
+            {
+                stringifiedList += items[i] + " ";
+            }
+            return stringifiedList;
+
         }
     }
 }

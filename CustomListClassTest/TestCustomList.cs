@@ -315,5 +315,152 @@ namespace CustomListClassTest
             Assert.IsTrue(weekdays.count == 5);
             
         }
+
+        [TestMethod]
+        public void ToString_Conversion_True()
+        {
+            //Arrange
+            CustomList<int> numbers = new CustomList<int>();
+            CustomList<string> expectedList = new CustomList<string>();
+
+            string newNumbers;
+            //Act
+            numbers.Add(1);
+            numbers.Add(2);
+            numbers.Add(3);
+            numbers.Add(4);
+            numbers.Add(5);
+
+           newNumbers = numbers.ToString();
+
+            //Assert
+            Assert.AreEqual("1 2 3 4 5 ", newNumbers);
+
+        }
+
+        [TestMethod]
+        public void PlusOverload_Concatenation_Pass()
+        {
+            //Arrange
+            CustomList<int> List1 = new CustomList<int>();
+            CustomList<int> List2 = new CustomList<int>();
+
+            CustomList<int> Result = new CustomList<int>();
+
+            //Act
+            List1.Add(1);
+            List1.Add(3);
+            List1.Add(5);
+
+            List2.Add(7);
+            List2.Add(9);
+            List2.Add(11);
+
+           // Result = List1 + List2;
+
+            //Assert
+            Assert.AreEqual(11, Result[5]);
+
+        }
+        [TestMethod]
+        public void PlusOverload_NullValues_AtEnd()
+        {
+
+            //Arrange
+            CustomList<int> List1 = new CustomList<int>();
+            CustomList<int> List2 = new CustomList<int>();
+
+            CustomList<int> Result = new CustomList<int>();
+            //Act
+            List1.Add(1);
+            List1.Add(3);
+            List1.Add(5);
+            List1.Add(7);
+            List1.Add(9);
+
+            List2.Add(11);
+            List2.Add(13);
+            List2.Add(17);
+            List2.Add(19);
+            List2.Add(23);
+
+           // Result = List1 + List2;
+
+            //Assert
+            Assert.AreEqual(11, Result[5]);
+
+        }
+
+        [TestMethod]
+        public void PlusOverload_List2_After1()
+        {
+            //Arrange
+            CustomList<string> weekdays1 = new CustomList<string>();
+            CustomList<string> weekdays2 = new CustomList<string>();
+
+            CustomList<string> weekdays = new CustomList<string>();
+
+            //Act
+            weekdays1.Add("Monday");
+            weekdays1.Add("Tuesday");
+            weekdays1.Add("Wednesday");
+
+            weekdays2.Add("Thursday");
+            weekdays2.Add("Friday");
+
+           // weekdays = weekdays1 + weekdays2;
+
+            //Assert
+            Assert.AreNotEqual("Thursday", weekdays[0]);
+
+        }
+
+        [TestMethod]
+       // [ExpectedException(typeof(exception))]
+        public void PlusOverload_DifferentType_Fail()
+        {
+
+            //Arrange
+            CustomList<string> weekdays = new CustomList<string>();
+            CustomList<int> numbers = new CustomList<int>();
+
+            //Act
+
+
+
+            //Assert
+
+        }
+        [TestMethod]
+        public void PlusOverload_ResizeResultList_True()
+        {
+
+            //Arrange
+
+
+
+            //Act
+
+
+
+            //Assert
+
+        }
+        [TestMethod]
+        public void PlusOverload_ResultCount_OnePlusTwo()
+        {
+
+            //Arrange
+
+
+
+            //Act
+
+
+
+            //Assert
+
+        }
     }
+
 }
