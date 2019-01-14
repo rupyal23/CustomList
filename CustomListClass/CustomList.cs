@@ -150,5 +150,18 @@ namespace CustomListClass
             ResultList.Desize();
             return ResultList;
         }
+
+        public CustomList<T> Zip(CustomList<T>list)
+        {
+            
+            for(int i = 0; i < list.count; i++)
+            {
+                for(int j = 1; j < this.count; j = j+2)
+                {
+                    this.Add(list[i], j);
+                }
+            }
+            return this;
+        }
     }
 }

@@ -622,6 +622,130 @@ namespace CustomListClassTest
             Assert.AreEqual(7, primes[3]);
 
         }
+
+        [TestMethod]
+        public void Zipper_Zipped_Yes()
+        {
+            //Arrange
+            CustomList<int> numbers1 = new CustomList<int>();
+            CustomList<int> numbers2 = new CustomList<int>();
+
+            CustomList<int> primes = new CustomList<int>();
+            int expectedValue = 7;
+            //Act
+            numbers1.Add(2);
+            numbers1.Add(5);
+            numbers1.Add(11);
+
+            numbers2.Add(3);
+            numbers2.Add(7);
+            numbers2.Add(13);
+
+            primes = numbers1.Zip(numbers2);
+            //Assert
+            Assert.AreEqual(expectedValue, primes[3]);
+        }
+
+        [TestMethod]
+        public void Zipper_List2After1_Yes()
+        {
+            //Arrange
+            CustomList<string> weekdays1 = new CustomList<string>();
+            CustomList<string> weekdays2 = new CustomList<string>();
+
+            CustomList<string> weekdays = new CustomList<string>();
+            string expectedValue = "Monday";
+            //Act
+            weekdays1.Add("Monday");
+            weekdays1.Add("Wednesday");
+            weekdays1.Add("Friday");
+            weekdays1.Add("Sunday");
+
+            weekdays2.Add("Tuesday");
+            weekdays2.Add("Thursday");
+            weekdays2.Add("Saturday");
+
+            weekdays = weekdays1.Zip(weekdays2);
+            
+
+            //Assert
+            Assert.AreEqual(expectedValue, weekdays[0]);
+        }
+
+        [TestMethod]
+        public void Zipper_ZippedCount_Right()
+        {
+            //Arrange
+            CustomList<string> weekdays1 = new CustomList<string>();
+            CustomList<string> weekdays2 = new CustomList<string>();
+
+            CustomList<string> weekdays = new CustomList<string>();
+
+            //Act
+            weekdays1.Add("Monday");
+            weekdays1.Add("Wednesday");
+            weekdays1.Add("Friday");
+            weekdays1.Add("Sunday");
+
+            weekdays2.Add("Tuesday");
+            weekdays2.Add("Thursday");
+            weekdays2.Add("Saturday");
+
+            weekdays = weekdays1.Zip(weekdays2);
+
+            //Assert
+            Assert.AreEqual(7, weekdays.count);
+        }
+
+        [TestMethod]
+        public void Zipper_ResizedArray_True()
+        {
+            //Arrange
+            CustomList<int> list1 = new CustomList<int>();
+            CustomList<int> list2 = new CustomList<int>();
+
+            CustomList<int> resultList = new CustomList<int>();
+            //Act
+            list1.Add(1);
+            list1.Add(3);
+            list1.Add(5);
+
+
+            list2.Add(2);
+            list1.Add(4);
+            list1.Add(6);
+            list1.Add(8);
+
+            resultList = list1.Zip(list2);
+
+            //Assert
+            Assert.AreEqual(16, resultList.capacity);
+
+        }
+        [TestMethod]
+        public void Zipper_GivenNulls_Zip()
+        {
+            //Arrange
+            CustomList<int> list1 = new CustomList<int>();
+            CustomList<int> list2 = new CustomList<int>();
+
+            CustomList<int> resultList = new CustomList<int>();
+            //Act
+            list1.Add(1);
+            list1.Add(3);
+            list1.Add(5);
+
+
+            list2.Add(0);
+
+            resultList = list1.Zip(list2);
+
+            //Assert
+            Assert.AreEqual(5, resultList[3]);
+
+        }
+
+
     }
 
 }
