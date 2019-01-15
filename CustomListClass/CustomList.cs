@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CustomListClass
 {
-    public class CustomList<T>
+    public class CustomList<T> : IEnumerable
     {
        
         private int _count;
@@ -46,7 +47,7 @@ namespace CustomListClass
         {
             _count++;
             Resize();
-            items[_count-1] = item;
+            items[_count - 1] = item;
         }
 
         //Overloaded by adding the index functionality. Add a value at the specified index and shifts list to the right.
@@ -153,15 +154,32 @@ namespace CustomListClass
 
         public CustomList<T> Zip(CustomList<T>list)
         {
-            
-            for(int i = 0; i < list.count; i++)
+            CustomList<T> ResultList = new CustomList<T>();
+            int counter;
+            if (list.count > this.count)
             {
-                for(int j = 1; j < this.count; j = j+2)
+                counter = list.count;
+            } else
+            {
+                counter = this.count;
+            } 
+            for (int i = 0; i < counter; i++)
+            {
+                if (this[i] != null && i < this.count)
                 {
-                    this.Add(list[i], j);
+                    ResultList.Add(this[i]);
+                }
+                if (list[i] != null && i < list.count)
+                {
+                    ResultList.Add(list[i]);
                 }
             }
-            return this;
+            return ResultList;
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            throw new NotImplementedException();
         }
     }
 }
