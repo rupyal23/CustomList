@@ -706,8 +706,59 @@ namespace CustomListClassTest
             Assert.AreEqual(5, resultList[3]);
 
         }
+        [TestMethod]
+        public void Iterator_Iteration_Done()
+        {
+            //Arrange
+            CustomList<int> numbers = new CustomList<int>() { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+            CustomList<int> expectedList = new CustomList<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+            CustomList<int> actualList = new CustomList<int>();
+            //Act
+            foreach(int all in numbers)
+            {
+                actualList.Add(all);
+            }
+
+            //Assert
+            Assert.AreEqual(expectedList, actualList);
+
+        }
+        [TestMethod]
+        public void Iterator_IterationWithLogic_Pass()
+        {
+            //Arrange
+            CustomList<int> numbers = new CustomList<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+            CustomList<int> oddsList = new CustomList<int>() { 1,3,5,7,9,11,13,15};
+            CustomList<int> expectedList = new CustomList<int>();
+            //Act
+            foreach (int odds in numbers)
+            {
+                if(odds % 2 != 0)
+                {
+                    expectedList.Add(odds);
+                }
+            }
+            //Assert
+            Assert.AreEqual(expectedList, oddsList);
+
+        }
+        [TestMethod]
+        public void Iterator_IterationStopsAtEnd_True()
+        {
+            //Arrange
+            CustomList<string> weekdays = new CustomList<string>() { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
+            
+            //Act
+            foreach (string day in weekdays)
+            {
+                Console.WriteLine(day);
+            }
+            //Assert
+
+        }
+
+
 
 
     }
-
 }
