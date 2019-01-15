@@ -179,7 +179,10 @@ namespace CustomListClass
 
         public IEnumerator GetEnumerator()
         {
-            throw new NotImplementedException();
+            for(int index = 0; index < _count; index++)
+            {
+                yield return items[index];
+            }
         }
     }
 }

@@ -718,9 +718,11 @@ namespace CustomListClassTest
             {
                 actualList.Add(all);
             }
-
             //Assert
-            Assert.AreEqual(expectedList, actualList);
+            for (int i = 0; i < expectedList.count; i++)
+            {
+                Assert.AreEqual(expectedList[i], actualList[i]);
+            }
 
         }
         [TestMethod]
@@ -739,21 +741,27 @@ namespace CustomListClassTest
                 }
             }
             //Assert
-            Assert.AreEqual(expectedList, oddsList);
+            for(int i = 0; i < oddsList.count; i++)
+            {
+                Assert.AreEqual(expectedList[i], oddsList[i]);
+            }
 
         }
         [TestMethod]
         public void Iterator_IterationStopsAtEnd_True()
         {
             //Arrange
-            CustomList<string> weekdays = new CustomList<string>() { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
-            
+            CustomList<string> actualList = new CustomList<string>() { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
+            CustomList<string> expectedList = new CustomList<string>();
+            int expectedValue = 5;
             //Act
-            foreach (string day in weekdays)
+            foreach (string day in actualList)
             {
-                Console.WriteLine(day);
+                expectedList.Add(day);
             }
             //Assert
+            Assert.AreEqual(expectedValue, expectedList.count);
+            
 
         }
 
