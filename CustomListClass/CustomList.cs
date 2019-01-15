@@ -88,7 +88,7 @@ namespace CustomListClass
         //Helper method to resize the array in the list
         public void Resize()
         {
-            if(_count == capacity)
+            if(_count >= capacity)
             {
                 capacity = capacity * 2;
                 T[] temporaryItems = new T[capacity];
@@ -159,17 +159,19 @@ namespace CustomListClass
             if (list.count > this.count)
             {
                 counter = list.count;
+               
             } else
             {
                 counter = this.count;
+               
             } 
             for (int i = 0; i < counter; i++)
             {
-                if (this[i] != null && i < this.count)
+                if (i < this.count)
                 {
                     ResultList.Add(this[i]);
                 }
-                if (list[i] != null && i < list.count)
+                if (i < list.count)
                 {
                     ResultList.Add(list[i]);
                 }

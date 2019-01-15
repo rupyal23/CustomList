@@ -106,6 +106,7 @@ namespace CustomListClassTest
         {
             //Arrange
             CustomList<int> primeNos = new CustomList<int>();
+            int expectedResult = 11;
             //Act
             primeNos.Add(3);
             primeNos.Add(5);
@@ -113,7 +114,7 @@ namespace CustomListClassTest
             primeNos.Add(11);
             primeNos.Add(13);
             primeNos.Add(17);
-            int expectedResult = 11;
+           
             //Assert
             Assert.AreEqual(expectedResult, primeNos[3]);
         }
@@ -125,19 +126,17 @@ namespace CustomListClassTest
         {
             //Arrange
             CustomList<int> numbers = new CustomList<int>(5);
-
-
+            int expectedResult;
             //Act
             numbers.Add(1);
             numbers.Add(2);
             numbers.Add(3);
             numbers.Add(4);
-            int expectedResult = numbers[6];
-                       
             //Assert
+            expectedResult = numbers[6];
         }
         
-        //Dont know if i would be able to do that
+        //Test for Add item at a specific index
         [TestMethod]
         public void Add_intItem_givenIndex()
         {
@@ -161,17 +160,15 @@ namespace CustomListClassTest
         public void Resize_value_doesResize()
         {
             //Arrange
-            CustomList<int> primeNos = new CustomList<int>();
+            CustomList<int> primeNos = new CustomList<int>() { 3, 5, 7};
+            int expectedValue = 8;
 
             //Act
-            primeNos.Add(3);
-            primeNos.Add(5);
-            primeNos.Add(7);
             primeNos.Add(9);
             primeNos.Add(11);
-            primeNos.Add(13);
-            
+
             //Assert
+            Assert.AreEqual(expectedValue, primeNos.capacity);
 
         }
 
@@ -181,18 +178,14 @@ namespace CustomListClassTest
         public void Count_ListItems_IsRight()
         {
             //Arrange
-            CustomList<int> primeNos = new CustomList<int>();
-            //Act
-            primeNos.Add(3);
-            primeNos.Add(5);
-            primeNos.Add(7);
-            primeNos.Add(9);
-            primeNos.Add(11);
-            primeNos.Add(13);
+            CustomList<int> primeNos = new CustomList<int>() { 3,5,7,9,11,13};
             int expectedResult = 6;
 
+            //Act
+            int actualResult = primeNos.count;
+
             //Assert
-            Assert.AreEqual(expectedResult, primeNos.count);
+            Assert.AreEqual(expectedResult, actualResult);
 
         }
 
@@ -200,56 +193,49 @@ namespace CustomListClassTest
         public void Count_ListItems_IsWrong()
         {
             //Arrange
-            CustomList<int> primeNos = new CustomList<int>();
+            CustomList<int> primeNos = new CustomList<int>() { 3,5,7,9,11,13};
+            int expectedResult = 6;
+            int actualResult = primeNos.count;
             //Act
-            primeNos.Add(3);
-            primeNos.Add(5);
-            primeNos.Add(7);
-            primeNos.Add(9);
-            primeNos.Add(11);
-            primeNos.Add(13);
-            int expectedResult = 5;
+            primeNos.Add(17);
+            actualResult = primeNos.count;
+            
             //Assert
-            Assert.AreNotEqual(expectedResult, primeNos.count);
+            Assert.AreNotEqual(expectedResult, actualResult);
         }
 
-        //Test if remove method works
+        //Test if remove method works and removes first instance not second
         [TestMethod]
         public void Remove_ListItems_firstIndex()
         {
             //Arrange
-            CustomList<string> weekdays = new CustomList<string>();
+            CustomList<string> weekdays = new CustomList<string>() { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Monday"};
             string expectedResult = "Tuesday";
+            string actualResult;
 
             //Act
-            weekdays.Add("Monday");
-            weekdays.Add("Tuesday");
-            weekdays.Add("Wednesday");
-            weekdays.Add("Thursday");
-            weekdays.Add("Friday");
             weekdays.Remove("Monday");
+            actualResult = weekdays[0];
 
             //Assert
-            Assert.AreEqual(expectedResult, weekdays[0]);
+            Assert.AreEqual(expectedResult, actualResult);
         }
 
+
+        //Test to check if remove doesn't only remove first value
         [TestMethod]
         public void Remove_ListItems_SecondIndex()
         {
             //Arrange
-            CustomList<string> weekdays = new CustomList<string>();
+            CustomList<string> weekdays = new CustomList<string>() { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
             string expectedResult = "Wednesday";
-
+            string actualResult;
             //Act
-            weekdays.Add("Monday");
-            weekdays.Add("Tuesday");
-            weekdays.Add("Wednesday");
-            weekdays.Add("Thursday");
-            weekdays.Add("Friday");
-            weekdays.Remove("Tuesday");
 
+            weekdays.Remove("Tuesday");
+            actualResult = weekdays[1];
             //Assert
-            Assert.AreEqual(expectedResult, weekdays[1]);
+            Assert.AreEqual(expectedResult, actualResult);
         }
 
 
@@ -258,20 +244,16 @@ namespace CustomListClassTest
         public void Remove_MultipleInstances_False()
         {
             //Arrange
-            CustomList<int> numbers = new CustomList<int>();
+            CustomList<int> numbers = new CustomList<int>() { 1, 2, 3, 2, 5, 2, 7 };
+            int expectedCount = 6;
+            int actualCount;
             
             //Act
-            numbers.Add(1);
-            numbers.Add(2);
-            numbers.Add(3);
-            numbers.Add(2);
-            numbers.Add(5);
-            numbers.Add(2);
-            numbers.Add(7);
             numbers.Remove(2);
+            actualCount = numbers.count;
             //Assert
 
-            Assert.AreEqual(6, numbers.count);
+            Assert.AreEqual(expectedCount, actualCount);
         }
 
 
@@ -280,21 +262,16 @@ namespace CustomListClassTest
         public void Remove_AtGivenIndex_True()
         {
             //Arrange
-            CustomList<int> primes = new CustomList<int>();
+            CustomList<int> primes = new CustomList<int>() { 1, 3, 6, 5, 7, 11, 13 };
+            int expectedResult = 5;
+            int actualResult;
 
             //Act
-            primes.Add(1);
-            primes.Add(3);
-            primes.Add(6);
-            primes.Add(5);
-            primes.Add(7);
-            primes.Add(9);
-            primes.Add(11);
-            primes.Add(13);
             primes.Remove(primes[2]);
+            actualResult = primes[2];
             //Assert
 
-            Assert.AreEqual(5, primes[2]);
+            Assert.AreEqual(expectedResult, actualResult);
         }
 
         //Testing to check if remove method does nothing
@@ -302,17 +279,13 @@ namespace CustomListClassTest
         public void Remove_NoMatch_NoRemove()
         {
             //Arrange
-            CustomList<string> weekdays = new CustomList<string>();
-
+            CustomList<string> weekdays = new CustomList<string>() { "monday", "tuesday", "wednesday", "thursday", "friday" };
+            int actualCount;
             //Act
-            weekdays.Add("monday");
-            weekdays.Add("tuesday");
-            weekdays.Add("wednesday");
-            weekdays.Add("thursday");
-            weekdays.Add("friday");
             weekdays.Remove("sunday");
+            actualCount = weekdays.count;
             //Assert
-            Assert.IsTrue(weekdays.count == 5);
+            Assert.IsTrue(actualCount == 5);
             
         }
 
@@ -343,23 +316,18 @@ namespace CustomListClassTest
         {
             //Arrange
             CustomList<int> List1 = new CustomList<int>() { 1, 3, 5};
-            CustomList<int> List2 = new CustomList<int>();
+            CustomList<int> List2 = new CustomList<int>() { 7, 9, 11};
 
             CustomList<int> Result = new CustomList<int>();
+            int expectedResult = 11;
+            int actualResult;
 
             //Act
-            //List1.Add(1);
-            //List1.Add(3);
-            //List1.Add(5);
-
-            List2.Add(7);
-            List2.Add(9);
-            List2.Add(11);
-
             Result = List1 + List2;
+            actualResult = Result[5];
 
             //Assert
-            Assert.AreEqual(11, Result[5]);
+            Assert.AreEqual(expectedResult, actualResult);
 
         }
         [TestMethod]
@@ -367,27 +335,19 @@ namespace CustomListClassTest
         {
 
             //Arrange
-            CustomList<int> List1 = new CustomList<int>();
-            CustomList<int> List2 = new CustomList<int>();
+            CustomList<int> List1 = new CustomList<int>() { 1, 3, 5, 7, 9 };
+            CustomList<int> List2 = new CustomList<int>() { 11, 13, 17, 19, 23 };
 
             CustomList<int> Result = new CustomList<int>();
+            int expectedResult = 11;
+            int actualResult;
             //Act
-            List1.Add(1);
-            List1.Add(3);
-            List1.Add(5);
-            List1.Add(7);
-            List1.Add(9);
-
-            List2.Add(11);
-            List2.Add(13);
-            List2.Add(17);
-            List2.Add(19);
-            List2.Add(23);
 
             Result = List1 + List2;
+            actualResult = Result[5];
 
             //Assert
-            Assert.AreEqual(11, Result[5]);
+            Assert.AreEqual(expectedResult, actualResult);
 
         }
 
@@ -395,23 +355,19 @@ namespace CustomListClassTest
         public void PlusOverload_List2_After1()
         {
             //Arrange
-            CustomList<string> weekdays1 = new CustomList<string>();
-            CustomList<string> weekdays2 = new CustomList<string>();
+            CustomList<string> weekdays1 = new CustomList<string>() { "Monday", "Tuesday", "Wednesday" };
+            CustomList<string> weekdays2 = new CustomList<string>() { "Thursday", "Friday" };
 
             CustomList<string> weekdays = new CustomList<string>();
+            string expectedResult = "Thursday";
+            string actualResult;
 
             //Act
-            weekdays1.Add("Monday");
-            weekdays1.Add("Tuesday");
-            weekdays1.Add("Wednesday");
-
-            weekdays2.Add("Thursday");
-            weekdays2.Add("Friday");
-
             weekdays = weekdays1 + weekdays2;
+            actualResult = weekdays[0];
 
             //Assert
-            Assert.AreNotEqual("Thursday", weekdays[0]);
+            Assert.AreNotEqual(expectedResult, actualResult);
 
         }
 
@@ -421,24 +377,18 @@ namespace CustomListClassTest
         {
 
             //Arrange
-            CustomList<string> weekdays1 = new CustomList<string>();
-            CustomList<string> weekdays2 = new CustomList<string>();
+            CustomList<string> weekdays1 = new CustomList<string>() { "Monday", "Tuesday", "Wednesday" };
+            CustomList<string> weekdays2 = new CustomList<string>() { "Thursday", "Friday" };
 
             CustomList<string> weekdays = new CustomList<string>();
-
-
+            int expectedResult = 8;
+            int actualResult;
+            
             //Act
-            weekdays1.Add("Monday");
-            weekdays1.Add("Tuesday");
-            weekdays1.Add("Wednesday");
-
-            weekdays2.Add("Thursday");
-            weekdays2.Add("Friday");
-
             weekdays = weekdays1 + weekdays2;
-
+            actualResult = weekdays.capacity;
             //Assert
-            Assert.AreEqual(8, weekdays.capacity);
+            Assert.AreEqual(expectedResult, actualResult);
 
 
         }
@@ -447,28 +397,19 @@ namespace CustomListClassTest
         {
 
             //Arrange
-            CustomList<int> numbers1 = new CustomList<int>();
-            CustomList<int> numbers2 = new CustomList<int>();
+            CustomList<int> numbers1 = new CustomList<int>() { 1, 2, 3, 4, 5 };
+            CustomList<int> numbers2 = new CustomList<int>() { 6, 7, 8, 9, 10 };
 
             CustomList<int> resultNumbers = new CustomList<int>();
+            int expectedResult = 10;
+            int actualResult;
             //Act
 
-            numbers1.Add(1);
-            numbers1.Add(2);
-            numbers1.Add(3);
-            numbers1.Add(4);
-            numbers1.Add(5);
-
-            numbers2.Add(1);
-            numbers2.Add(2);
-            numbers2.Add(3);
-            numbers2.Add(4);
-            numbers2.Add(5);
-
             resultNumbers = numbers1 + numbers2;
+            actualResult = resultNumbers.count;
 
             //Assert
-            Assert.AreEqual(10, resultNumbers.count);
+            Assert.AreEqual(expectedResult, resultNumbers.count);
         }
 
 
@@ -627,16 +568,16 @@ namespace CustomListClassTest
         public void Zipper_Zipped_Yes()
         {
             //Arrange
-            CustomList<int> numbers1 = new CustomList<int>() { 2, 5, 11, 17 };
-            CustomList<int> numbers2 = new CustomList<int>() { 3, 7, 13, 19 };
+            CustomList<int> numbers1 = new CustomList<int>() { 1, 3 };
+            CustomList<int> numbers2 = new CustomList<int>() { 2, 4, 6, 8, 10 };
 
             CustomList<int> primes = new CustomList<int>();
-            int expectedValue = 7;
+            int expectedValue = 10;
             //Act
             
             primes = numbers1.Zip(numbers2);
             //Assert
-            Assert.AreEqual(expectedValue, primes[3]);
+            Assert.AreEqual(expectedValue, primes[6]);
         }
 
         [TestMethod]
@@ -762,11 +703,7 @@ namespace CustomListClassTest
             //Assert
             Assert.AreEqual(expectedValue, expectedList.count);
             
-
         }
-
-
-
 
     }
 }
