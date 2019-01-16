@@ -661,13 +661,13 @@ namespace CustomListClassTest
             Assert.AreEqual(expectedValue, expectedList.count);
         }
 
-        //[TestMethod]
-        //Method not Complete yet - Todo
+        [TestMethod]
+        //Basic Test to see if sorting is done
         public void Sort_sorting_does()
         {
             //Arrange
-            CustomList<int> numbers = new CustomList<int> { 5, 2, 8, 9, 0, 4, 1 };
-            int expectedResult = 1;
+            CustomList<int> numbers = new CustomList<int> { 4, 8, 80, 7, 6, 0, 56, 12, 101, 87, 16 };
+            int expectedResult = 0;
             int actualResult;
             
             //Act
@@ -677,6 +677,25 @@ namespace CustomListClassTest
             //Assert
             Assert.AreEqual(expectedResult, actualResult);
         }
+
+
+        [TestMethod]
+        //Test to see if count is still same of new list
+        public void Sort_Count_equal()
+        {
+            //Arrange
+            CustomList<int> numbers = new CustomList<int> { 4, 8, 7, 5, 20, 18, 6 };
+            int expectedResult = 7;
+            int actualResult;
+
+            //Act
+            numbers.Sort(numbers);
+            actualResult = numbers.count;
+
+            //Assert
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
 
     }
 }

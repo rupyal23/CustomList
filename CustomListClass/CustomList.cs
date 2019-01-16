@@ -195,19 +195,20 @@ namespace CustomListClass
         }
 
 
-        //Unable to complete yet/ Does not work
+        //Sorting for ints 
         public void Sort(CustomList<int>List)
         {
             int temp;
-            foreach(int el in List)
+            for(int i = 0; i < _count; i++)
             {
-                for (int i = 1; i < _count; i++)
+                for (int j = i; j < _count; j++)
                 {
-                    if (el.CompareTo(List[i]) > 0)
+                    if (List[i].CompareTo(List[j]) > 0)
                     {
                         temp = List[i];
-                        List[i] = List[i - 1];
-                        List[i - 1] = temp;
+                        List[i] = List[j];
+                        List[j] = temp;
+                        
                     }
                 }
             }
