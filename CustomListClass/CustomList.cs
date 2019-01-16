@@ -88,7 +88,7 @@ namespace CustomListClass
         //Helper method to resize the array in the list
         public void Resize()
         {
-            if(_count >= capacity)
+            if(_count == capacity)
             {
                 capacity = capacity * 2;
                 T[] temporaryItems = new T[capacity];
@@ -100,6 +100,8 @@ namespace CustomListClass
             }
         }
 
+
+        //Helper method to desize- used in the - operator overloading
         public void Desize()
         {
             if((capacity - _count) > 4)
@@ -114,6 +116,7 @@ namespace CustomListClass
             }
         }
 
+        //Overrided the ToString Method to stringify the objects in a list
         public override string ToString()
         {
             
@@ -126,6 +129,7 @@ namespace CustomListClass
 
         }
 
+        //Overloaded the + operator to add two lists
         public static CustomList<T> operator +(CustomList<T>List1, CustomList<T>List2)
         {
             CustomList<T> ResultList = new CustomList<T>();
@@ -140,6 +144,7 @@ namespace CustomListClass
             return ResultList;
         }
 
+        //Overloaded the - operator to subtract two lists
         public static CustomList<T> operator -(CustomList<T>List1, CustomList<T>List2)
         {
             CustomList<T> ResultList = new CustomList<T>();
@@ -152,6 +157,7 @@ namespace CustomListClass
             return ResultList;
         }
 
+        //Zip Method to Zip Two Lists
         public CustomList<T> Zip(CustomList<T>list)
         {
             CustomList<T> ResultList = new CustomList<T>();
@@ -179,11 +185,31 @@ namespace CustomListClass
             return ResultList;
         }
 
+        //Interface Implementation for Iteration
         public IEnumerator GetEnumerator()
         {
             for(int index = 0; index < _count; index++)
             {
                 yield return items[index];
+            }
+        }
+
+
+        //Unable to complete yet/ Does not work
+        public void Sort(CustomList<int>List)
+        {
+            int temp;
+            foreach(int el in List)
+            {
+                for (int i = 1; i < _count; i++)
+                {
+                    if (el.CompareTo(List[i]) > 0)
+                    {
+                        temp = List[i];
+                        List[i] = List[i - 1];
+                        List[i - 1] = temp;
+                    }
+                }
             }
         }
     }

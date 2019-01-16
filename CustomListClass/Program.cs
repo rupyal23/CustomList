@@ -19,11 +19,8 @@ namespace CustomListClass
             Weekdays.Add("Thursday");
             Weekdays.Add("Friday");
 
-            foreach(string el in Weekdays)
-            {
-                Console.WriteLine(el);
-            }
 
+     
 
 
             //My Custom List

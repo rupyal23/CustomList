@@ -162,13 +162,15 @@ namespace CustomListClassTest
             //Arrange
             CustomList<int> primeNos = new CustomList<int>() { 3, 5, 7};
             int expectedValue = 8;
+            int actualValue;
 
             //Act
             primeNos.Add(9);
             primeNos.Add(11);
+            actualValue = primeNos.capacity;
 
             //Assert
-            Assert.AreEqual(expectedValue, primeNos.capacity);
+            Assert.AreEqual(expectedValue, actualValue);
 
         }
 
@@ -293,21 +295,16 @@ namespace CustomListClassTest
         public void ToString_Conversion_True()
         {
             //Arrange
-            CustomList<int> numbers = new CustomList<int>();
+            CustomList<int> numbers = new CustomList<int>() { 1, 2, 3, 4, 5 };
             CustomList<string> expectedList = new CustomList<string>();
+            string actualresult;
+            string expectedResult = "1 2 3 4 5 ";
 
-            string newNumbers;
             //Act
-            numbers.Add(1);
-            numbers.Add(2);
-            numbers.Add(3);
-            numbers.Add(4);
-            numbers.Add(5);
-
-           newNumbers = numbers.ToString();
+            actualresult = numbers.ToString();
 
             //Assert
-            Assert.AreEqual("1 2 3 4 5 ", newNumbers);
+            Assert.AreEqual(expectedResult, actualresult);
 
         }
 
@@ -418,28 +415,18 @@ namespace CustomListClassTest
         public void SubtractOverload_Subtraction_Pass()
         {
             //Arrange
-            CustomList<int> numbers1 = new CustomList<int>();
-            CustomList<int> numbers2 = new CustomList<int>();
-
+            CustomList<int> numbers1 = new CustomList<int>() { 1, 2, 3, 4, 5, 6, 7 };
+            CustomList<int> numbers2 = new CustomList<int>() { 2, 4, 6 };
             CustomList<int> odds = new CustomList<int>();
+            int expectedResult = 7;
+            int actualResult;
 
             //Act
-            numbers1.Add(1);
-            numbers1.Add(2);
-            numbers1.Add(3);
-            numbers1.Add(4);
-            numbers1.Add(5);
-            numbers1.Add(6);
-            numbers1.Add(7);
-
-            numbers2.Add(2);
-            numbers2.Add(4);
-            numbers2.Add(6);
-
             odds = numbers1 - numbers2;
+            actualResult = odds[3];
 
             //Assert
-            Assert.AreEqual(7, odds[3]);
+            Assert.AreEqual(expectedResult, actualResult);
 
         }
 
@@ -448,28 +435,17 @@ namespace CustomListClassTest
         public void SubtractOverload_DesizeArray_True()
         {
             //Arrange
-            CustomList<int> numbers1 = new CustomList<int>();
-            CustomList<int> numbers2 = new CustomList<int>();
-
+            CustomList<int> numbers1 = new CustomList<int>() { 1, 2, 3, 4, 5, 6, 7 };
+            CustomList<int> numbers2 = new CustomList<int>() { 4, 5, 6, 7 };
             CustomList<int> odds = new CustomList<int>();
+            int expectedResult = 4;
+            int actualResult;
             //Act
-            numbers1.Add(1);
-            numbers1.Add(2);
-            numbers1.Add(3);
-            numbers1.Add(4);
-            numbers1.Add(5);
-            numbers1.Add(6);
-            numbers1.Add(7);
-
-            numbers2.Add(4);
-            numbers2.Add(5);
-            numbers2.Add(6);
-            numbers2.Add(7);
-
             odds = numbers1 - numbers2;
+            actualResult = odds.capacity;
 
             //Assert
-            Assert.AreEqual(4, odds.capacity);
+            Assert.AreEqual(expectedResult, actualResult);
 
         }
 
@@ -479,25 +455,18 @@ namespace CustomListClassTest
         public void SubtractOverload_OnlyOne_True()
         {
             //Arrange
-            CustomList<string> weekdays1 = new CustomList<string>();
-            CustomList<string> weekdays2 = new CustomList<string>();
-
+            CustomList<string> weekdays1 = new CustomList<string>() { "Monday", "Tuesday", "Tuesday", "Wednesday", "Thursday", "Friday" };
+            CustomList<string> weekdays2 = new CustomList<string>() { "Thursday", "Tuesday", "Friday" };
             CustomList<string> weekdays = new CustomList<string>();
+            string expectedResult = "Tuesday";
+            string actualResult;
+
             //Act
-            weekdays1.Add("Monday");
-            weekdays1.Add("Tuesday");
-            weekdays1.Add("Tuesday");
-            weekdays1.Add("Wednesday");
-            weekdays1.Add("Thursday");
-            weekdays1.Add("Friday");
-
-            weekdays2.Add("Thursday");
-            weekdays2.Add("Tuesday");
-            weekdays2.Add("Friday");
-
             weekdays = weekdays1 - weekdays2;
+            actualResult = weekdays[1];
+
             //Assert
-            Assert.AreEqual("Tuesday", weekdays[1]);
+            Assert.AreEqual(expectedResult, actualResult);
         }
 
         //To check if first instance is deleted not second
@@ -505,62 +474,39 @@ namespace CustomListClassTest
         public void SubtractOverload_OnlyFirstDelete_True()
         {
             //Arrange
-            CustomList<int> numbers1 = new CustomList<int>();
-            CustomList<int> numbers2 = new CustomList<int>();
-
+            CustomList<int> numbers1 = new CustomList<int>() { 10, 20, 50, 30, 40, 50, 60 };
+            CustomList<int> numbers2 = new CustomList<int>() { 87, 56, 50, 58 };
             CustomList<int> numbers = new CustomList<int>();
+            int expectedResult = 50;
+            int actualResult;
 
             //Act
-            numbers1.Add(10);
-            numbers1.Add(20);
-            numbers1.Add(50);
-            numbers1.Add(30);
-            numbers1.Add(40);
-            numbers1.Add(50);
-            numbers1.Add(60);
-
-            numbers2.Add(87);
-            numbers2.Add(56);
-            numbers2.Add(50);
-            numbers2.Add(58);
-
             numbers = numbers1 - numbers2;
+            actualResult = numbers[4];
 
             //Assert
-            Assert.AreEqual(50, numbers[4]);
+            Assert.AreEqual(expectedResult, actualResult);
 
         }
-
-
 
         //Check if it can hold values again and resize again after subtraction
         [TestMethod]
         public void SubtractOverload_DoAddOnResult_shouldWork()
         {
             //Arrange
-            CustomList<int> primes1 = new CustomList<int>();
-            CustomList<int> primes2 = new CustomList<int>();
-
+            CustomList<int> primes1 = new CustomList<int>() { 2, 3, 5, 7, 9 };
+            CustomList<int> primes2 = new CustomList<int>() { 9, 7, 11, 13, 17 };
             CustomList<int> primes = new CustomList<int>();
+            int expectedResult = 7;
+            int actualResult;
+
             //Act
-
-            primes1.Add(2);
-            primes1.Add(3);
-            primes1.Add(5);
-            primes1.Add(7);
-            primes1.Add(9);
-
-            primes2.Add(9);
-            primes1.Add(7);
-            primes2.Add(11);
-            primes2.Add(13);
-            primes2.Add(17);
-
             primes = primes1 - primes2;
             primes.Add(7, 3);
+            actualResult = primes[3];
 
             //Assert
-            Assert.AreEqual(7, primes[3]);
+            Assert.AreEqual(expectedResult, actualResult);
 
         }
 
@@ -570,14 +516,16 @@ namespace CustomListClassTest
             //Arrange
             CustomList<int> numbers1 = new CustomList<int>() { 1, 3 };
             CustomList<int> numbers2 = new CustomList<int>() { 2, 4, 6, 8, 10 };
-
             CustomList<int> primes = new CustomList<int>();
             int expectedValue = 10;
+            int actualValue;
+
             //Act
-            
             primes = numbers1.Zip(numbers2);
+            actualValue = primes[6];
+
             //Assert
-            Assert.AreEqual(expectedValue, primes[6]);
+            Assert.AreEqual(expectedValue, actualValue);
         }
 
         [TestMethod]
@@ -586,16 +534,16 @@ namespace CustomListClassTest
             //Arrange
             CustomList<string> weekdays1 = new CustomList<string>() { "Monday", "Wednesday", "Friday", "Sunday" };
             CustomList<string> weekdays2 = new CustomList<string>() { "Tuesday", "Thursday", "Saturday"};
-
             CustomList<string> weekdays = new CustomList<string>();
             string expectedValue = "Monday";
+            string actualValue;
+
             //Act
-           
             weekdays = weekdays1.Zip(weekdays2);
-            
+            actualValue = weekdays[0];
 
             //Assert
-            Assert.AreEqual(expectedValue, weekdays[0]);
+            Assert.AreEqual(expectedValue, actualValue);
         }
 
         [TestMethod]
@@ -604,15 +552,16 @@ namespace CustomListClassTest
             //Arrange
             CustomList<string> weekdays1 = new CustomList<string>() { "Monday", "Wednesday", "Friday", "Sunday" };
             CustomList<string> weekdays2 = new CustomList<string>() { "Tuesday", "Thursday", "Saturday" };
-
             CustomList<string> weekdays = new CustomList<string>();
+            int expectedCount = 7;
+            int actualCount;
 
             //Act
-           
             weekdays = weekdays1.Zip(weekdays2);
+            actualCount = weekdays.count;
 
             //Assert
-            Assert.AreEqual(7, weekdays.count);
+            Assert.AreEqual(expectedCount, actualCount);
         }
 
         [TestMethod]
@@ -621,14 +570,16 @@ namespace CustomListClassTest
             //Arrange
             CustomList<int> list1 = new CustomList<int>() { 1, 3, 5 };
             CustomList<int> list2 = new CustomList<int>() { 2, 4, 6, 8 };
-
-
             CustomList<int> resultList = new CustomList<int>();
+            int expectedResult = 8;
+            int actualResult;
+
             //Act
             resultList = list1.Zip(list2);
+            actualResult = resultList.capacity;
 
             //Assert
-            Assert.AreEqual(8, resultList.capacity);
+            Assert.AreEqual(expectedResult, actualResult);
 
         }
         [TestMethod]
@@ -637,14 +588,16 @@ namespace CustomListClassTest
             //Arrange
             CustomList<int> list1 = new CustomList<int>() { 1, 3, 5 };
             CustomList<int> list2 = new CustomList<int>() { 0 };
-
             CustomList<int> resultList = new CustomList<int>();
+            int expectedResult = 5;
+            int actualResult;
+
             //Act
-            
             resultList = list1.Zip(list2);
+            actualResult = resultList[3];
 
             //Assert
-            Assert.AreEqual(5, resultList[3]);
+            Assert.AreEqual(expectedResult, actualResult);
 
         }
         [TestMethod]
@@ -673,6 +626,7 @@ namespace CustomListClassTest
             CustomList<int> numbers = new CustomList<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
             CustomList<int> oddsList = new CustomList<int>() { 1,3,5,7,9,11,13,15};
             CustomList<int> expectedList = new CustomList<int>();
+
             //Act
             foreach (int odds in numbers)
             {
@@ -681,6 +635,7 @@ namespace CustomListClassTest
                     expectedList.Add(odds);
                 }
             }
+
             //Assert
             for(int i = 0; i < oddsList.count; i++)
             {
@@ -695,14 +650,32 @@ namespace CustomListClassTest
             CustomList<string> actualList = new CustomList<string>() { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
             CustomList<string> expectedList = new CustomList<string>();
             int expectedValue = 5;
+
             //Act
             foreach (string day in actualList)
             {
                 expectedList.Add(day);
             }
+
             //Assert
             Assert.AreEqual(expectedValue, expectedList.count);
+        }
+
+        //[TestMethod]
+        //Method not Complete yet - Todo
+        public void Sort_sorting_does()
+        {
+            //Arrange
+            CustomList<int> numbers = new CustomList<int> { 5, 2, 8, 9, 0, 4, 1 };
+            int expectedResult = 1;
+            int actualResult;
             
+            //Act
+            numbers.Sort(numbers);
+            actualResult = numbers[0];
+
+            //Assert
+            Assert.AreEqual(expectedResult, actualResult);
         }
 
     }
