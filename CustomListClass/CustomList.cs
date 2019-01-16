@@ -213,5 +213,24 @@ namespace CustomListClass
                 }
             }
         }
+
+        //Reverse Sorting
+        public void ReverseSort(CustomList<int> List)
+        {
+            int temp;
+            for (int i = 0; i < _count; i++)
+            {
+                for (int j = 0; j < _count; j++)
+                {
+                    if (List[i].CompareTo(List[j]) > 0)
+                    {
+                        temp = List[i];
+                        List[i] = List[j];
+                        List[j] = temp;
+
+                    }
+                }
+            }
+        }
     }
 }
